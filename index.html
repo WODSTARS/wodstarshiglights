@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>WODSTAR COMPETENCIAS</title>
+<style>
+body{
+  background:black;
+  color:white;
+  font-family:sans-serif;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  margin:0;
+}
+
+h1{color:gold;}
+
+#lista{
+  width:100%;
+  max-width:400px;
+}
+
+.competencia{
+  background:#111;
+  margin:10px;
+  padding:15px;
+  border-radius:10px;
+  cursor:pointer;
+  transition:0.3s;
+  text-align:center;
+}
+
+.competencia:hover{
+  background:#222;
+  transform:scale(1.05);
+}
+</style>
+</head>
+<body>
+
+<h1>WODSTAR COMPETENCIAS</h1>
+
+<div id="lista"></div>
+
+<script>
+const competencias = [
+  {nombre:"Competencia 1", archivo:"competencia1.html"},
+  {nombre:"Competencia 2", archivo:"competencia2.html"}
+];
+
+let html="";
+competencias.forEach(c=>{
+  html+=`<div class="competencia" onclick="location.href='${c.archivo}'">${c.nombre}</div>`;
+});
+document.getElementById("lista").innerHTML=html;
+</script>
+
+</body>
+</html>
