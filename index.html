@@ -20,6 +20,13 @@ body{
 
 h1{color:gold;}
 
+.logo-wodstar{
+  width:180px;
+  max-width:70vw;
+  height:auto;
+  margin:18px 0 8px;
+}
+
 #lista{
   width:100%;
   max-width:400px;
@@ -156,6 +163,35 @@ h1{color:gold;}
 
 .extra-foto strong{
   color:gold;
+}
+
+.planes-mobile{
+  display:none;
+}
+
+.plan-mobile{
+  background:#050505;
+  border:1px solid #333;
+  border-radius:8px;
+  padding:16px;
+  margin-bottom:14px;
+}
+
+.plan-mobile h3{
+  color:gold;
+  text-align:center;
+  margin:0 0 8px;
+  font-size:1.5rem;
+}
+
+.plan-mobile .tipo-mobile{
+  text-align:center;
+  color:#ddd;
+  margin:0 0 12px;
+}
+
+.plan-mobile .plan-precio{
+  margin-bottom:14px;
 }
 
 .acciones-planes{
@@ -314,22 +350,58 @@ input,select{
 }
 
 @media (max-width:760px){
+  body{
+    justify-content:flex-start;
+  }
+
+  h1{
+    font-size:1.55rem;
+    text-align:center;
+    padding:0 12px;
+  }
+
+  .logo-wodstar{
+    width:150px;
+  }
+
   #precios{
     max-width:100%;
   }
 
   .modal.modal-planes{
+    width:calc(100vw - 16px);
+    max-height:calc(100vh - 16px);
     padding:14px;
   }
 
-  .tabla-planes{
-    min-width:720px;
+  .modal-encabezado h2{
+    font-size:1.55rem;
   }
 
-  .tabla-planes th,
-  .tabla-planes td{
-    padding:12px;
-    font-size:0.92rem;
+  .tabla-wrap{
+    display:none;
+  }
+
+  .planes-mobile{
+    display:block;
+  }
+
+  .extra-foto{
+    font-size:0.95rem;
+    margin-bottom:16px;
+  }
+
+  .acciones-planes{
+    position:sticky;
+    bottom:0;
+    background:#111;
+    padding-top:12px;
+  }
+
+  .btn-contactar,
+  .acciones-planes button{
+    flex:1;
+    text-align:center;
   }
 }
 </style>
@@ -337,6 +409,7 @@ input,select{
 
 <body>
 
+<img class="logo-wodstar" src="wodstar-logo.png" alt="WODSTAR">
 <h1>WODSTARS COMPETENCIAS</h1>
 
 <div id="lista"></div>
@@ -522,6 +595,60 @@ function mostrarPlanes(){
             </tr>
           </tbody>
         </table>
+      </div>
+
+      <div class="planes-mobile">
+        <div class="plan-mobile">
+          <h3>START</h3>
+          <p class="tipo-mobile">Plan basico</p>
+          <span class="plan-precio">$950 MXN</span>
+          <ul class="beneficios-lista">
+            <li>Plataforma de resultados en tiempo real</li>
+            <li>Captura de scores</li>
+            <li>Hasta 100 atletas</li>
+            <li>Heats y logistica basica</li>
+            <li>5 modalidades de scoring</li>
+            <li>Soporte presencial</li>
+            <li>Staff en tu competencia</li>
+          </ul>
+        </div>
+
+        <div class="plan-mobile">
+          <h3>PRO</h3>
+          <p class="tipo-mobile">Plan recomendado</p>
+          <span class="plan-precio">$1500 MXN</span>
+          <ul class="beneficios-lista">
+            <li>Todo el plan START</li>
+            <li>Inscripcion desde la plataforma</li>
+            <li>Categorias ilimitadas</li>
+            <li>App para jueces</li>
+            <li>Entrega de memorias finales</li>
+            <li>Soporte prioritario</li>
+            <li>Redes sociales</li>
+            <li>Direccion de evento</li>
+            <li>Venta de entradas</li>
+          </ul>
+        </div>
+
+        <div class="plan-mobile">
+          <h3>ELITE</h3>
+          <p class="tipo-mobile">Plan premium</p>
+          <span class="plan-precio">$1650 MXN</span>
+          <ul class="beneficios-lista">
+            <li>Todo el plan PRO</li>
+            <li>Personalizacion total del evento</li>
+            <li>Diseno grafico y branding</li>
+            <li>Estadisticas avanzadas</li>
+            <li>Integracion con patrocinadores</li>
+            <li>Respaldo en la nube</li>
+            <li>Publicaciones en redes sociales</li>
+          </ul>
+        </div>
+
+        <div class="extra-foto">
+          <strong>Agrega fotografo profesional en tu competencia</strong><br>
+          $1500 MXN extra por 120 fotos.
+        </div>
       </div>
 
       <div class="acciones-planes">
