@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Highlights Moonlight Games</title>
+
+<style>
+:root{
+  --bg:#000;
+  --panel:#0c0c0c;
+  --line:#303030;
+  --accent:#FFD700;
+  --text:#f5f5f5;
+  --muted:#cfcfcf;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Segoe UI',sans-serif;
+}
+
+.page{
+  width:100%;
+  max-width:1180px;
+  margin:0 auto;
+  padding:28px 18px 42px;
+}
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:14px;
+  margin-bottom:28px;
+}
+
+.back-link{
+  display:inline-block;
+  background:var(--accent);
+  color:#000;
+  padding:11px 16px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.brand{
+  color:var(--accent);
+  font-weight:bold;
+  letter-spacing:0;
+}
+
+.hero{
+  min-height:230px;
+  display:flex;
+  align-items:flex-end;
+  padding:28px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:
+    linear-gradient(rgba(0,0,0,0.15),rgba(0,0,0,0.86)),
+    radial-gradient(circle at top right,#4a3c00,#070707 54%);
+  box-shadow:0 0 22px rgba(255,215,0,0.18);
+  margin-bottom:26px;
+}
+
+.hero h1{
+  color:var(--accent);
+  font-size:clamp(2rem,6vw,4.2rem);
+  margin:0 0 8px;
+}
+
+.hero p{
+  color:var(--muted);
+  font-size:1.1rem;
+  margin:0;
+  max-width:680px;
+  line-height:1.45;
+}
+
+.section-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin:30px 0 14px;
+}
+
+.section-title h2{
+  color:var(--accent);
+  margin:0;
+}
+
+.counter{
+  color:#000;
+  background:var(--accent);
+  padding:7px 10px;
+  border-radius:999px;
+  font-size:0.85rem;
+  font-weight:bold;
+}
+
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+.photo-card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 0 14px rgba(255,215,0,0.08);
+}
+
+.photo-slot{
+  aspect-ratio:4/3;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:0;
+  background:
+    linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.76)),
+    radial-gradient(circle at center,#3b3100,#050505 60%);
+}
+
+.photo-slot img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.photo-slot img[src="wodstar-logo-transparent.png"]{
+  width:145px;
+  height:auto;
+  max-width:70%;
+  object-fit:contain;
+  filter:drop-shadow(0 0 12px rgba(255,215,0,0.35));
+}
+
+.photo-info{
+  padding:14px;
+}
+
+.photo-info h3{
+  margin:0 0 6px;
+  color:var(--accent);
+  font-size:1.05rem;
+}
+
+.photo-info p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.4;
+}
+
+.note{
+  margin-top:22px;
+  padding:16px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:#080808;
+  color:var(--muted);
+  line-height:1.5;
+}
+
+.note strong{
+  color:var(--accent);
+}
+
+@media(max-width:900px){
+  .gallery{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:620px){
+  .page{
+    padding:18px 12px 32px;
+  }
+
+  .topbar{
+    align-items:stretch;
+    flex-direction:column;
+  }
+
+  .back-link{
+    text-align:center;
+  }
+
+  .hero{
+    min-height:210px;
+    padding:20px;
+    border-radius:12px;
+  }
+
+  .section-title{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .gallery{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+<main class="page">
+  <div class="topbar">
+    <a class="back-link" href="competencia2.html">Volver a la competencia</a>
+    <div class="brand">WODSTARS HIGHLIGHTS</div>
+  </div>
+
+  <section class="hero">
+    <div>
+      <h1>Moonlight Games</h1>
+      <p>Highlights de competencia organizados para mostrar los mejores momentos del evento de forma limpia, rapida y adaptable a cualquier pantalla.</p>
+    </div>
+  </section>
+
+  <div class="section-title">
+    <h2>Galeria del evento</h2>
+    <span class="counter">6 espacios listos</span>
+  </div>
+
+  <section class="gallery">
+    <article class="photo-card">
+      <div class="photo-slot">
+        <img src="fotos/highlight-01.jpg" alt="Inicio del evento" onerror="this.onerror=null;this.src='wodstar-logo-transparent.png';">
+      </div>
+      <div class="photo-info">
+        <h3>Inicio del evento</h3>
+        <p>Espacio para la primera foto destacada de la competencia.</p>
+      </div>
+    </article>
+
+    <article class="photo-card">
+      <div class="photo-slot">
+        <img src="fotos/highlight-02.jpg" alt="Atletas en accion" onerror="this.onerror=null;this.src='wodstar-logo-transparent.png';">
+      </div>
+      <div class="photo-info">
+        <h3>Atletas en accion</h3>
+        <p>Momento principal del wod, levantamiento o prueba del dia.</p>
+      </div>
+    </article>
+
+    <article class="photo-card">
+      <div class="photo-slot">
+        <img src="fotos/highlight-03.jpg" alt="Comunidad" onerror="this.onerror=null;this.src='wodstar-logo-transparent.png';">
+      </div>
+      <div class="photo-info">
+        <h3>Comunidad</h3>
+        <p>Foto de publico, boxes, equipos o ambiente del evento.</p>
+      </div>
+    </article>
+
+    <article class="photo-card">
+      <div class="photo-slot">
+        <img src="fotos/highlight-04.jpg" alt="Momentos clave" onerror="this.onerror=null;this.src='wodstar-logo-transparent.png';">
+      </div>
+      <div class="photo-info">
+        <h3>Momentos clave</h3>
+        <p>Espacio para capturas importantes de la jornada.</p>
+      </div>
+    </article>
+
+    <article class="photo-card">
+      <div class="photo-slot">
+        <img src="fotos/highlight-05.jpg" alt="Staff y jueces" onerror="this.onerror=null;this.src='wodstar-logo-transparent.png';">
+      </div>
+      <div class="photo-info">
+        <h3>Staff y jueces</h3>
+        <p>Foto del equipo que hizo posible la competencia.</p>
+      </div>
+    </article>
+
+    <article class="photo-card">
+      <div class="photo-slot">
+        <img src="fotos/highlight-06.jpg" alt="Cierre del evento" onerror="this.onerror=null;this.src='wodstar-logo-transparent.png';">
+      </div>
+      <div class="photo-info">
+        <h3>Cierre del evento</h3>
+        <p>Espacio para la foto final o momento mas memorable.</p>
+      </div>
+    </article>
+  </section>
+
+  <div class="note">
+    <strong>Listo para otro repositorio:</strong> esta pagina puede subirse sola junto con el logo y las fotos. Cuando tengas la URL del repositorio de highlights, cambia el enlace del boton en <code>competencia2.html</code>.
+  </div>
+</main>
+</body>
+</html>
