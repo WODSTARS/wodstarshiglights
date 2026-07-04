@@ -11,6 +11,7 @@
   --panel:#0c0c0c;
   --line:#303030;
   --accent:#FFD700;
+  --accent-soft:rgba(255,215,0,.14);
   --text:#f5f5f5;
   --muted:#cfcfcf;
 }
@@ -21,7 +22,9 @@
 
 body{
   margin:0;
-  background:var(--bg);
+  background:
+    linear-gradient(180deg,rgba(255,215,0,.08),transparent 220px),
+    var(--bg);
   color:var(--text);
   font-family:'Segoe UI',sans-serif;
 }
@@ -30,22 +33,18 @@ body{
   width:100%;
   max-width:1180px;
   margin:0 auto;
-  padding:74px 14px 42px;
+  padding:68px 14px 42px;
 }
 
 .topbar{
   display:flex;
-  justify-content:flex-end;
+  justify-content:space-between;
   align-items:center;
   gap:14px;
-  margin-bottom:28px;
+  margin-bottom:18px;
 }
 
 .back-link{
-  position:fixed;
-  top:14px;
-  left:14px;
-  z-index:20;
   display:inline-flex;
   align-items:center;
   justify-content:center;
@@ -62,37 +61,124 @@ body{
 }
 
 .brand{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
   color:var(--accent);
   font-weight:bold;
   letter-spacing:0;
+  font-size:.86rem;
+  text-align:right;
+}
+
+.brand::before{
+  content:"";
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 12px rgba(255,215,0,.7);
 }
 
 .hero{
-  min-height:210px;
+  min-height:160px;
   display:flex;
   align-items:flex-end;
-  padding:22px;
+  padding:20px;
   border:1px solid var(--line);
-  border-radius:16px;
+  border-radius:18px;
   background:
-    linear-gradient(rgba(0,0,0,0.15),rgba(0,0,0,0.86)),
+    linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.92)),
     radial-gradient(circle at top right,#4a3c00,#070707 54%);
   box-shadow:0 0 22px rgba(255,215,0,0.18);
-  margin-bottom:26px;
+  margin-bottom:18px;
 }
 
 .hero h1{
   color:var(--accent);
-  font-size:clamp(2rem,6vw,4.2rem);
-  margin:0 0 8px;
+  font-size:clamp(1.65rem,5vw,2.65rem);
+  margin:0 0 5px;
 }
 
 .hero p{
   color:var(--muted);
-  font-size:1rem;
+  font-size:.95rem;
   margin:0;
   max-width:680px;
   line-height:1.45;
+}
+
+.hero-actions{
+  margin-top:14px;
+}
+
+.view-highlights{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:42px;
+  padding:10px 16px;
+  border-radius:999px;
+  background:var(--accent);
+  color:#000;
+  text-decoration:none;
+  font-weight:800;
+  box-shadow:0 8px 18px rgba(0,0,0,.24);
+}
+
+.credits{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:10px;
+  margin:0 0 22px;
+  padding:12px;
+  border:1px solid rgba(255,215,0,.2);
+  border-radius:14px;
+  background:rgba(255,215,0,.06);
+  color:var(--muted);
+  font-size:.9rem;
+  line-height:1.45;
+}
+
+.credits strong{
+  color:var(--accent);
+}
+
+.credits a{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  color:var(--accent);
+  text-decoration:none;
+  font-weight:800;
+  padding:7px 10px 7px 7px;
+  border:1px solid rgba(255,215,0,.35);
+  border-radius:999px;
+  background:rgba(255,215,0,.08);
+  box-shadow:0 8px 18px rgba(0,0,0,.2);
+}
+
+.credits a:focus-visible,
+.credits a:hover{
+  background:rgba(255,215,0,.16);
+  border-color:rgba(255,215,0,.58);
+}
+
+.ig-mark{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:24px;
+  height:24px;
+  border-radius:8px;
+  background:
+    radial-gradient(circle at 32% 105%,#feda75 0 18%,#fa7e1e 34%,#d62976 58%,#962fbf 78%,#4f5bd5 100%);
+  color:#fff;
+  font-size:.64rem;
+  font-weight:900;
+  line-height:1;
+  box-shadow:0 0 0 1px rgba(255,255,255,.18) inset;
 }
 
 .section-title{
@@ -100,7 +186,7 @@ body{
   align-items:center;
   justify-content:space-between;
   gap:12px;
-  margin:30px 0 14px;
+  margin:22px 0 14px;
 }
 
 .section-title h2{
@@ -127,7 +213,7 @@ body{
   position:relative;
   background:var(--panel);
   border:1px solid var(--line);
-  border-radius:16px;
+  border-radius:18px;
   overflow:hidden;
   box-shadow:0 16px 34px rgba(0,0,0,.34),0 0 14px rgba(255,215,0,0.08);
 }
@@ -163,7 +249,8 @@ body{
   grid-template-columns:1fr auto;
   align-items:center;
   gap:12px;
-  padding:13px 14px 14px;
+  min-height:96px;
+  padding:14px;
 }
 
 .photo-info h3{
@@ -179,6 +266,14 @@ body{
   font-size:.94rem;
 }
 
+.photo-credit{
+  display:inline-block;
+  margin-top:7px;
+  color:#f4df76;
+  font-size:.78rem;
+  font-weight:700;
+}
+
 .like-btn{
   width:46px;
   min-height:44px;
@@ -188,8 +283,13 @@ body{
   color:var(--accent);
   cursor:pointer;
   font-weight:800;
-  font-size:1rem;
+  font-size:0;
   transition:background .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+
+.like-btn::before{
+  content:"\2665";
+  font-size:1rem;
 }
 
 .like-btn:hover{
@@ -225,39 +325,84 @@ body{
 
 @media(max-width:620px){
   .page{
-    padding:64px 10px 32px;
+    padding:18px 10px 30px;
   }
 
   .topbar{
-    justify-content:center;
-    margin-bottom:18px;
+    position:sticky;
+    top:0;
+    z-index:10;
+    margin:0 -10px 12px;
+    padding:10px;
+    background:linear-gradient(180deg,#000 76%,rgba(0,0,0,0));
+    gap:10px;
   }
 
   .back-link{
-    top:calc(10px + env(safe-area-inset-top));
-    left:10px;
     max-width:calc(100vw - 20px);
-    padding:9px 12px;
-    font-size:.82rem;
+    padding:10px 11px;
+    font-size:.78rem;
+    white-space:nowrap;
+  }
+
+  .brand{
+    justify-content:flex-end;
+    font-size:.72rem;
+    line-height:1.15;
   }
 
   .hero{
-    min-height:190px;
-    padding:18px;
-    border-radius:12px;
+    min-height:178px;
+    padding:15px;
+    border-radius:16px;
   }
 
   .hero h1{
-    font-size:2.15rem;
+    font-size:1.82rem;
   }
 
   .hero p{
-    font-size:.94rem;
+    font-size:.9rem;
+  }
+
+  .hero-actions{
+    margin-top:10px;
+  }
+
+  .view-highlights{
+    width:100%;
+  }
+
+  .credits{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    padding:12px 13px;
+    border-radius:12px;
+    font-size:.84rem;
+  }
+
+  .credits a{
+    margin-top:4px;
+    min-height:38px;
+  }
+
+  .credits span{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:6px;
+  }
+
+  .ig-mark{
+    width:26px;
+    height:26px;
   }
 
   .section-title{
     align-items:flex-start;
     flex-direction:column;
+    gap:8px;
   }
 
   .gallery{
@@ -267,10 +412,17 @@ body{
 
   .photo-card{
     border-radius:14px;
+    box-shadow:0 12px 24px rgba(0,0,0,.36),0 0 12px rgba(255,215,0,0.08);
+  }
+
+  .photo-slot{
+    aspect-ratio:4/5;
   }
 
   .photo-info{
-    padding:12px;
+    min-height:auto;
+    padding:13px;
+    background:linear-gradient(180deg,#111,#080808);
   }
 
   .photo-info h3{
@@ -284,6 +436,9 @@ body{
   .like-btn{
     width:44px;
     min-height:42px;
+  }
+
+  .like-btn::before{
     font-size:.95rem;
   }
 }
@@ -322,13 +477,21 @@ body{
   <section class="hero">
     <div>
       <h1>Moonlight Games</h1>
-      <p>Highlights de competencia.</p>
+      <p>Momentos destacados del evento, listos para verse rápido desde el teléfono.</p>
+      <div class="hero-actions">
+        <a class="view-highlights" href="#galeria">Ver highlights</a>
+      </div>
     </div>
   </section>
 
-  <div class="section-title">
-    <h2>Galeria del evento</h2>
-    <span class="counter">6 espacios listos</span>
+  <section class="credits" aria-label="Créditos de fotografía">
+    <span><strong>Fotos:</strong> obras de <a href="https://www.instagram.com/venustas_1505/" target="_blank" rel="noopener" aria-label="Abrir Instagram de Venustas"><span class="ig-mark" aria-hidden="true">IG</span>@venustas_1505</a></span>
+    <span>en colaboración con <a href="https://www.instagram.com/wodstarscores/" target="_blank" rel="noopener" aria-label="Abrir Instagram de WODSTARS Scores"><span class="ig-mark" aria-hidden="true">IG</span>@wodstarscores</a>.</span>
+  </section>
+
+  <div class="section-title" id="galeria">
+    <h2>Galería del evento</h2>
+    <span class="counter">6 highlights</span>
   </div>
 
   <section class="gallery">
@@ -340,6 +503,7 @@ body{
         <div>
           <h3>Inicio del evento</h3>
           <p>La primera foto destacada de la competencia.</p>
+          <span class="photo-credit">Venustas x WODSTARS Scores</span>
         </div>
         <button class="like-btn" type="button" data-like="highlight-01" aria-label="Dar like a Inicio del evento">♥</button>
       </div>
@@ -347,14 +511,15 @@ body{
 
     <article class="photo-card">
       <div class="photo-slot">
-        <img src="fotos/highlight-02.jpg" data-base="fotos/highlight-02" alt="Atletas en accion" onerror="probarOtraFoto(this)">
+        <img src="fotos/highlight-02.jpg" data-base="fotos/highlight-02" alt="Atletas en acción" onerror="probarOtraFoto(this)">
       </div>
       <div class="photo-info">
         <div>
-          <h3>Atleta en accion</h3>
+          <h3>Atleta en acción</h3>
           <p>Momento top.</p>
+          <span class="photo-credit">Venustas x WODSTARS Scores</span>
         </div>
-        <button class="like-btn" type="button" data-like="highlight-02" aria-label="Dar like a Atletas en accion">♥</button>
+        <button class="like-btn" type="button" data-like="highlight-02" aria-label="Dar like a Atletas en acción">♥</button>
       </div>
     </article>
 
@@ -365,7 +530,8 @@ body{
       <div class="photo-info">
         <div>
           <h3>Comunidad</h3>
-          <p>Foto de publico, boxes, equipos o ambiente del evento.</p>
+          <p>Foto de público, boxes, equipos o ambiente del evento.</p>
+          <span class="photo-credit">Venustas x WODSTARS Scores</span>
         </div>
         <button class="like-btn" type="button" data-like="highlight-03" aria-label="Dar like a Comunidad">♥</button>
       </div>
@@ -378,7 +544,8 @@ body{
       <div class="photo-info">
         <div>
           <h3>Momentos clave</h3>
-          <p>El momento mas emocionate y de mayor tencion.</p>
+          <p>El momento más emocionante y de mayor tensión.</p>
+          <span class="photo-credit">Venustas x WODSTARS Scores</span>
         </div>
         <button class="like-btn" type="button" data-like="highlight-04" aria-label="Dar like a Momentos clave">♥</button>
       </div>
@@ -392,6 +559,7 @@ body{
         <div>
           <h3>Staff y jueces</h3>
           <p>Foto del equipo que hizo posible la competencia gracias a todos.</p>
+          <span class="photo-credit">Venustas x WODSTARS Scores</span>
         </div>
         <button class="like-btn" type="button" data-like="highlight-05" aria-label="Dar like a Staff y jueces">♥</button>
       </div>
@@ -404,7 +572,8 @@ body{
       <div class="photo-info">
         <div>
           <h3>Cierre del evento</h3>
-          <p> momento mas memorable.</p>
+          <p>Momento más memorable.</p>
+          <span class="photo-credit">Venustas x WODSTARS Scores</span>
         </div>
         <button class="like-btn" type="button" data-like="highlight-06" aria-label="Dar like a Cierre del evento">♥</button>
       </div>
