@@ -261,6 +261,81 @@ body{
   filter:drop-shadow(0 0 12px rgba(255,215,0,0.35));
 }
 
+.staff-carousel.photo-slot{
+  position:relative;
+  aspect-ratio:3/4;
+  overflow:hidden;
+}
+
+.staff-slide{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transform:scale(1.025);
+  transition:opacity .65s ease,transform .9s ease;
+  pointer-events:none;
+}
+
+.staff-slide.is-active{
+  opacity:1;
+  transform:scale(1);
+}
+
+.staff-slide img{
+  object-position:center 34%;
+}
+
+.staff-slide:nth-child(2) img,
+.staff-slide:nth-child(3) img{
+  object-position:center 42%;
+}
+
+.staff-controls{
+  position:absolute;
+  z-index:2;
+  left:12px;
+  right:12px;
+  bottom:12px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  pointer-events:none;
+}
+
+.staff-arrow{
+  width:42px;
+  height:42px;
+  border:1px solid rgba(255,255,255,.55);
+  border-radius:50%;
+  background:rgba(0,0,0,.72);
+  color:#fff;
+  cursor:pointer;
+  font-size:1.25rem;
+  pointer-events:auto;
+}
+
+.staff-arrow:hover,
+.staff-arrow:focus-visible{
+  background:var(--accent);
+  color:#000;
+}
+
+.staff-position{
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(0,0,0,.72);
+  color:#fff;
+  font-size:.78rem;
+  font-weight:800;
+  letter-spacing:.04em;
+}
+
+@media(prefers-reduced-motion:reduce){
+  .staff-slide{
+    transition:none;
+  }
+}
+
 .photo-info{
   display:grid;
   grid-template-columns:1fr auto;
@@ -568,14 +643,33 @@ body{
       </div>
     </article>
 
-    <article class="photo-card">
-      <div class="photo-slot">
-        <img src="fotos/highlight-05.jpg" data-base="fotos/highlight-05" alt="Staff y jueces" onerror="probarOtraFoto(this)">
+    <article class="photo-card" id="staff-y-jueces">
+      <div class="photo-slot staff-carousel" data-staff-carousel aria-label="Galería rotativa de staff y jueces">
+        <div class="staff-slide is-active">
+          <img src="fotos/staff-jueces-01.jpg" alt="Juez revisando la hoja de puntuación durante Moonlight Games">
+        </div>
+        <div class="staff-slide" aria-hidden="true">
+          <img src="fotos/staff-jueces-02.jpg" alt="Integrante del staff registrando resultados junto al área de competencia">
+        </div>
+        <div class="staff-slide" aria-hidden="true">
+          <img src="fotos/staff-jueces-03.jpg" alt="Juez siguiendo una prueba con su hoja de puntuación">
+        </div>
+        <div class="staff-slide" aria-hidden="true">
+          <img src="fotos/staff-jueces-04.jpg" alt="Jueza preparada para registrar las repeticiones de una atleta">
+        </div>
+        <div class="staff-slide" aria-hidden="true">
+          <img src="fotos/staff-jueces-05.jpg" alt="Integrante del staff supervisando el área de competencia">
+        </div>
+        <div class="staff-controls">
+          <button class="staff-arrow staff-prev" type="button" aria-label="Foto anterior del staff">‹</button>
+          <span class="staff-position" aria-live="polite">1 / 5</span>
+          <button class="staff-arrow staff-next" type="button" aria-label="Siguiente foto del staff">›</button>
+        </div>
       </div>
       <div class="photo-info">
         <div>
           <h3>Staff y jueces</h3>
-          <p>Foto del equipo que hizo posible la competencia gracias a todos.</p>
+          <p>El equipo que hizo posible la competencia. Las fotos cambian automáticamente.</p>
           <span class="photo-credit">Venustas x WODSTARS Scores</span>
         </div>
         <button class="like-btn" type="button" data-like="highlight-05" aria-label="Dar like a Staff y jueces">♥</button>
@@ -716,6 +810,49 @@ document.querySelectorAll(".like-btn").forEach(btn=>{
     const active = btn.classList.toggle("is-liked");
     localStorage.setItem(key, active ? "1" : "0");
   });
+});
+
+document.querySelectorAll("[data-staff-carousel]").forEach(carousel=>{
+  const slides = [...carousel.querySelectorAll(".staff-slide")];
+  const previous = carousel.querySelector(".staff-prev");
+  const next = carousel.querySelector(".staff-next");
+  const position = carousel.querySelector(".staff-position");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let activeIndex = 0;
+  let timer;
+
+  const showSlide = index=>{
+    activeIndex = (index + slides.length) % slides.length;
+    slides.forEach((slide,slideIndex)=>{
+      const active = slideIndex === activeIndex;
+      slide.classList.toggle("is-active",active);
+      slide.setAttribute("aria-hidden",String(!active));
+    });
+    position.textContent = `${activeIndex + 1} / ${slides.length}`;
+  };
+
+  const stopRotation = ()=>window.clearInterval(timer);
+  const startRotation = ()=>{
+    stopRotation();
+    if(!reduceMotion){
+      timer = window.setInterval(()=>showSlide(activeIndex + 1),4500);
+    }
+  };
+
+  previous.addEventListener("click",()=>{
+    showSlide(activeIndex - 1);
+    startRotation();
+  });
+  next.addEventListener("click",()=>{
+    showSlide(activeIndex + 1);
+    startRotation();
+  });
+  carousel.addEventListener("mouseenter",stopRotation);
+  carousel.addEventListener("mouseleave",startRotation);
+  carousel.addEventListener("focusin",stopRotation);
+  carousel.addEventListener("focusout",startRotation);
+  showSlide(0);
+  startRotation();
 });
 </script>
 </body>
